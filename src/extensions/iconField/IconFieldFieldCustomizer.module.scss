@@ -1,0 +1,10 @@
+@import '~office-ui-fabric-core/dist/sass/Fabric.scss';
+
+.FabricIconer {
+
+  font-size: 20px;
+
+  @include ms-Icon;
+  // Modifiers: Each of the icons.
+  @include ms-icon-classes($ms-icon-map);
+}
