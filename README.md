@@ -1,6 +1,6 @@
 ## custom-fields
 
-This is where you include your WebPart documentation.
+This SPFx package is for demonstrating how to deploy a Field Customizer without provisioning a custom field in the solution. And use the installed Field Customizer on an existing column.
 
 ### Building the code
 
@@ -8,19 +8,25 @@ This is where you include your WebPart documentation.
 git clone the repo
 npm i
 npm i -g gulp
-gulp
+gulp clean
+gulp build
+gulp bundle --ship
+gulp package-solution --ship
 ```
 
 This package produces the following:
 
-* lib/* - intermediate-stage commonjs build artifacts
-* dist/* - the bundled script, along with other resources
-* deploy/* - all resources which should be uploaded to a CDN.
+* sharepoint/solution/solutio-name.sppkg - The app package file
 
-### Build options
+Add this package to the App Catalog and publish/install the app.
+### Create a list and add the Field Customizer
 
-gulp clean - TODO
-gulp test - TODO
-gulp serve - TODO
-gulp bundle - TODO
-gulp package-solution - TODO
+Create a list. A single line of text column is need, to which we will associate the Field Customizer.
+Run the following PnP Powershell code to associate the extension
+```Powershell
+$list = Get-PnPList -Identity $listTitle  
+$fld = Get-PnPField -List $list -Identity $fieldTitle  
+$fld.ClientSideComponentId = "0407eb29-728c-47c3-9f9b-bb1d2e04c4cc"  
+$fld.Update()  
+Invoke-PnPQuery 
+```
