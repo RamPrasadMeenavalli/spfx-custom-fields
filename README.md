@@ -1,4 +1,4 @@
-## custom-fields
+## spfx-custom-fields
 
 This SPFx package is for demonstrating how to deploy a Field Customizer without provisioning a custom field in the solution. And use the installed Field Customizer on an existing column.
 
